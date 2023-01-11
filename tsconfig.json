@@ -12,7 +12,8 @@
       "@utils/*": ["utils/*"],
       "@routes/*": ["routes/*"],
       "@controllers/*": ["controllers/*"],
-      "@resources/*": ["resources/*"]
+      "@resources/*": ["resources/*"],
+      "@models/*": ["models/*"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
