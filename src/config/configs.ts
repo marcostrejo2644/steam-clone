@@ -8,4 +8,5 @@ export default {
   mongoPassword: process.env.MONGO_PASSWORD,
   elasticUser: process.env.ELASTIC_USER,
   elasticPassword: process.env.ELASTIC_PASSWORD,
+  elasticUri: process.env.ELASTIC_NODE,
 }
