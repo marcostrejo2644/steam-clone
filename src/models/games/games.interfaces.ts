@@ -4,12 +4,15 @@ export interface gameBase {
   price: number
 }
 
-export interface gameI extends gameBase {
-  about: string
-  releaseDate?: string
+export interface gameElasticI extends gameBase{
   genre: string
   tags: Array<string>
   features: Array<string>
+}
+
+export interface gameI extends gameElasticI {
+  about: string
+  releaseDate?: string
   images: Array<string>
   shortDescription: string
   requeriments: {
