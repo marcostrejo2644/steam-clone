@@ -1,12 +1,12 @@
 export interface gameBase {
-  id?: string
+  _id?: string
   name: string
   price: number
 }
 
-export interface gameDB extends gameBase {
+export interface gameI extends gameBase {
   about: string
-  releaseData?: string
+  releaseDate?: string
   genre: string
   tags: Array<string>
   features: Array<string>
@@ -25,8 +25,12 @@ export interface gameDB extends gameBase {
 }
 
 export interface gameFunctionality {
-  getGame(gameId?: string): Promise<gameDB | null >
-  addGame(game: gameDB): Promise<gameDB> 
-  updateGame(game: gameDB): Promise<void>
+  getGame(gameId?: string): Promise<gameI | null >
+  addGame(game: gameI): Promise<void> 
+  updateGame(game: gameI): Promise<void>
   deteleGame(id: string): Promise<void>
+}
+
+export enum typePersistance{
+  MONGO = 'MONGO'
 }

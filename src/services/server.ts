@@ -9,9 +9,9 @@ const app = express()
 //Error Handler
 const errorHandler: ErrorRequestHandler = (err, req, res) => {
   Logger.error(`HUBO UN ERROR ${err}`)
-  // res.status(500).json({
-  //   err: err.message
-  // });
+  res.status(500).json({
+    err: err.message
+  });
 }
 
 app.use(cors())

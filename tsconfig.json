@@ -13,6 +13,7 @@
       "@routes/*": ["routes/*"],
       "@controllers/*": ["controllers/*"],
       "@resources/*": ["resources/*"],
+      "@apis/*": ["apis/*"],
       "@models/*": ["models/*"]
     },
     "resolveJsonModule": true,
