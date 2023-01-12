@@ -1,26 +1,25 @@
 import mongoConnection from "@services/mongoDB";
-import { gameI, gameFunctionality } from "@models/games/games.interfaces";
+import { GameI } from "@models/games/games.interfaces";
 import gameSchema from "@models/games/gamesDAO/mongo/mongoSchema";
 import { Logger } from "@utils/logger";
-
-export class gamesMongoPersistance implements gameFunctionality {
+import { CRUD } from "@models/Core/CRUD.interface";
+export class GamesMongoPersistance implements CRUD<GameI> {
   private Games;
 
   constructor() {
     const mongoServer = mongoConnection.getConnection()
-    this.Games = mongoServer.model<gameI>('Games', gameSchema) 
+    this.Games = mongoServer.model<GameI>('Games', gameSchema) 
   }
-  
-  async getGame(): Promise<null | gameI> {
+  add(object: GameI): Promise<GameI | null> {
+    throw new Error("Method not implemented.");
+  }
+  update(object: GameI, id: string): Promise<GameI> {
+    throw new Error("Method not implemented.");
+  }
+  delete(id: string): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
+  async get(): Promise<GameI | GameI[] | null> {
     return null
-  }
-
-  async addGame(game: gameI): Promise<void>{
-  }
-
-  async updateGame(game: gameI): Promise<void> {
-  }
-
-  async deteleGame(id: string): Promise<void> {
-  }   
+  } 
 }

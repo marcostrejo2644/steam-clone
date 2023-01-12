@@ -1,12 +1,12 @@
-import gamesFactory from "@models/games/games.factory"
-import { typePersistance, gameFunctionality } from "@models/games/games.interfaces"
+import { typePersistance } from "@models/Core/persistan.type"
+import GamesFactory from "@models/games/games.factory"
 
-class gamesAPI{
+class GamesAPI {
   private games
 
   constructor(){
-    this.games = gamesFactory.getData(typePersistance.MONGO)
+    this.games = GamesFactory.getData(typePersistance.MONGO)
   }
 }
 
-export default new gamesAPI()
+export default new GamesAPI()

@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose'
-import { gameI } from '@models/games/games.interfaces'
+import { GameI } from '@models/games/games.interfaces'
 
-const gameSchema = new Schema<gameI>({
+const gameSchema = new Schema<GameI>({
   name: {
     type: String,
     required: true
@@ -51,10 +51,6 @@ const gameSchema = new Schema<gameI>({
       negatives: 0
     }
   }
-})
+});
 
-export default gameSchema
-
-// const Game = model('Games', gameSchema)
-//
-// export default Game
+export default gameSchema;

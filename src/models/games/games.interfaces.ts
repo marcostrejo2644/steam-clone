@@ -1,16 +1,16 @@
-export interface gameBase {
+export interface GameBase {
   _id?: string
   name: string
   price: number
 }
 
-export interface gameElasticI extends gameBase{
+export interface GameElasticI extends GameBase{
   genre: string
   tags: Array<string>
   features: Array<string>
 }
 
-export interface gameI extends gameElasticI {
+export interface GameI extends GameElasticI {
   about: string
   releaseDate?: string
   images: Array<string>
@@ -25,15 +25,4 @@ export interface gameI extends gameElasticI {
     positives: number
     negatives: number
   }
-}
-
-export interface gameFunctionality {
-  getGame(gameId?: string): Promise<gameI | null >
-  addGame(game: gameI): Promise<void> 
-  updateGame(game: gameI): Promise<void>
-  deteleGame(id: string): Promise<void>
-}
-
-export enum typePersistance{
-  MONGO = 'MONGO'
 }

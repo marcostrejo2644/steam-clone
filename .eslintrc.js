@@ -11,6 +11,10 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
+    indent: [
+      "error",
+      2
+    ],
     eqeqeq: 1,
     'no-unused-vars': 'warn',
     'no-useless-escape': 'warn',

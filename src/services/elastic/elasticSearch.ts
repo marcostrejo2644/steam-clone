@@ -3,13 +3,13 @@ import configs from '@config/configs'
 
 // If i have security disabled in my elastic config, only use node, if not use auth object
 
-export abstract class elasticClient {
+export abstract class ElasticClient {
   private static clientElastic: Client
   
   private constructor(){}
 
   static getInstance() {
-    if(elasticClient.clientElastic) return this.clientElastic
+    if(ElasticClient.clientElastic) return this.clientElastic
     else {
       this.clientElastic = new Client({
         node: configs.elasticUri,

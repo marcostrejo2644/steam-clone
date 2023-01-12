@@ -1,14 +1,12 @@
-import { model, Schema } from 'mongoose'
-import { tagsI } from '@models/tags/tags.interfaces'
+import { Schema } from 'mongoose'
+import { TagI } from '@models/tags/tags.interfaces'
 
-const tagsSchema = new Schema<tagsI>({
+const tagSchema = new Schema<TagI>({
   id: String,
   name: {
     required: true,
     type: String
   }
-})
+});
 
-const Tags = model('Tags', tagsSchema)
-
-export default Tags
+export default tagSchema;
