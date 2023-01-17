@@ -9,6 +9,8 @@ const genreSchema = new Schema<GenreI>({
     required: true,
     type: String
   }
+},{
+  collection: "Genres"
 })
 
 export default genreSchema;

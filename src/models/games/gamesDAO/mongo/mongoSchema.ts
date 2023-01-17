@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import { Schema } from 'mongoose'
 import { GameI } from '@models/games/games.interfaces'
 
 const gameSchema = new Schema<GameI>({
@@ -28,6 +28,10 @@ const gameSchema = new Schema<GameI>({
     type: [String],
     ref: 'Tags'
   },
+  owner: {
+    type: String,
+    ref: 'Users'
+  },
   features: [String],
   images: [String],
   requeriments: {
@@ -51,6 +55,8 @@ const gameSchema = new Schema<GameI>({
       negatives: 0
     }
   }
+},{
+  collection: "Games"
 });
 
 export default gameSchema;

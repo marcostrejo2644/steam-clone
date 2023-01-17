@@ -21,7 +21,7 @@ export class HttpError extends Error{
 // Error Handler
 export const errorHandler = async (error: HttpError, _request: Request, response: Response, next: NextFunction) => {
   Logger.error(`Error : ${error}`)
-  return response.status(error.httpStatusCode).json({ error })
+  return response.status(error.httpStatusCode || 500).json({ error })
 }
 
 // Error 404 not found route or resource

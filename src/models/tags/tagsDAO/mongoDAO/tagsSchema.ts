@@ -7,6 +7,8 @@ const tagSchema = new Schema<TagI>({
     required: true,
     type: String
   }
+},{
+  collection: "Tags"
 });
 
 export default tagSchema;

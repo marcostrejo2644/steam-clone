@@ -1,25 +1,44 @@
 import { CRUD } from "@models/Core/CRUD.interface";
-import { GenreI } from "@models/genres/genres.interfaces";
+import { GenreDTO } from "@models/genres/genres.interfaces";
 import mongoConnection from "@services/mongoDB";
+import { Logger } from "@utils/logger";
 import genreSchema from "./genreSchema";
-
-export class GenreMongoPersistance implements CRUD<GenreI>{
+import genreJSON from "../../../../test/JSON/genres.json"
+export class GenreMongoPersistance implements CRUD<GenreDTO>{
     private Genre;
 
     constructor() {
         const mongoServer = mongoConnection.getConnection()
-        this.Genre = mongoServer.model<GenreI>('Genre', genreSchema)
+        this.Genre = mongoServer.model<GenreDTO>('Genres', genreSchema)
     }
-    get(id?: string | undefined): Promise<GenreI | GenreI[] | null> {
-        throw new Error("Method not implemented.");
+
+    async get(id?: string | undefined): Promise<GenreDTO | GenreDTO[] | null> {
+        if(id) return await this.Genre.findById(id)
+
+        return await this.Genre.find();
     }
-    add(object: GenreI): Promise<GenreI | null> {
-        throw new Error("Method not implemented.");
+
+    async add(object: GenreDTO): Promise<GenreDTO | null> {
+        const newGenre = new this.Genre(object)
+        return await newGenre.save()
     }
-    update(object: GenreI, id: string): Promise<GenreI> {
-        throw new Error("Method not implemented.");
+
+    async update(id: string, object: GenreDTO): Promise<GenreDTO | null> {
+        return await this.Genre.findByIdAndUpdate(id , object)
     }
-    delete(id: string): Promise<void> {
-        throw new Error("Method not implemented.");
+
+    async delete(id: string): Promise<null> {
+        return await this.Genre.findByIdAndDelete(id)
     }
+
+    // call inside constructor
+    // private bulk() {
+    //     this.Genre.count()
+    //         .then( (count: number) => {
+    //             if(!count) {
+    //                 this.Genre.insertMany(genreJSON)
+    //             }
+    //         })
+    //         .catch(error => Logger.error(error.message))
+    // }
 }

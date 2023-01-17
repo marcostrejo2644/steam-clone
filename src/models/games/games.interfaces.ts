@@ -13,8 +13,10 @@ export interface GameElasticI extends GameBase{
 export interface GameI extends GameElasticI {
   about: string
   releaseDate?: string
+  principalPicture: string
   images: Array<string>
   shortDescription: string
+  owner: string
   requeriments: {
     os: string
     processor: string
