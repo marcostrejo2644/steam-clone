@@ -1,6 +1,6 @@
 import { typePersistance } from "@models/Core/persistan.type";
 import { Logger } from "@utils/logger";
-import { TagsMongoPersistance } from "./tagsDAO/mongoDAO/tagsDAO";
+import { TagsMongoPersistance } from "./tagsDAO/mongo/mongoDAO";
 
 
 export default class TagFactory {
