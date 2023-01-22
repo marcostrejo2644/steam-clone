@@ -5,14 +5,16 @@ import configs from '@config/configs'
 
 export abstract class ElasticClient {
   private static clientElastic: Client
-  
-  private constructor(){}
+
+  private constructor() {}
 
   static getInstance() {
-    if(ElasticClient.clientElastic) return this.clientElastic
+    if (ElasticClient.clientElastic) return this.clientElastic
     else {
       this.clientElastic = new Client({
-        node: configs.elasticUri,
+        cloud: {
+          id: configs.elasticCloudID
+        },
         auth: {
           username: configs.elasticUser,
           password: configs.elasticPassword
@@ -21,4 +23,4 @@ export abstract class ElasticClient {
       return this.clientElastic
     }
   }
-} 
+}
