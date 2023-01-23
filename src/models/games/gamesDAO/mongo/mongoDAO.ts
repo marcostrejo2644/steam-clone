@@ -1,26 +1,32 @@
 import mongoConnection from "@services/mongoDB";
-import { GameI } from "@models/games/games.interfaces";
+import { GameDTO } from "@models/games/games.interfaces";
 import gameSchema from "@models/games/gamesDAO/mongo/mongoSchema";
-import { Logger } from "@utils/logger";
 import { CRUD } from "@models/Core/CRUD.interface";
-export class GamesMongoPersistance implements CRUD<GameI> {
+
+export class GamesMongoPersistance implements CRUD<GameDTO> {
   private Games;
 
   constructor() {
     const mongoServer = mongoConnection.getConnection()
-    this.Games = mongoServer.model<GameI>('Games', gameSchema) 
+    this.Games = mongoServer.model<GameDTO>('Games', gameSchema) 
   }
-  delete(id: string): Promise<null> {
-    throw new Error("Method not implemented.");
+
+  async get(id?: string | undefined): Promise<GameDTO | GameDTO[] | null> {
+    if(id) return await this.Games.findById(id)
+
+    return await this.Games.find();
   }
-  add(object: GameI): Promise<GameI | null> {
-    throw new Error("Method not implemented.");
+
+  async add(object: GameDTO): Promise<GameDTO | null> {
+    const newGames = new this.Games(object)
+    return await newGames.save()
   }
-  update(object: GameI, id: string): Promise<GameI> {
-    throw new Error("Method not implemented.");
+
+  async update(id: string, object: GameDTO): Promise<GameDTO | null> {
+    return await this.Games.findByIdAndUpdate(id , object)
   }
-  
-  async get(): Promise<GameI | GameI[] | null> {
-    return null
-  } 
+
+  async delete(id: string): Promise<null> {
+    return await this.Games.findByIdAndDelete(id)
+  }
 }
