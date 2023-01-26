@@ -4,6 +4,6 @@ export interface TagI {
 }
 
 export interface TagDTO {
-  id?: String
+  _id?: String
   name?: string
 }

@@ -4,6 +4,6 @@ export interface GenreI{
 }
 
 export interface GenreDTO {
-  id?: string
+  _id?: string
   name: string
 }

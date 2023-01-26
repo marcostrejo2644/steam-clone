@@ -11,7 +11,7 @@ export interface GameElasticI extends GameBase{
 }
 
 export interface GameDTO {
-  id?: string
+  _id?: string
   about: string
   releaseDate?: string
   principalPicture: string

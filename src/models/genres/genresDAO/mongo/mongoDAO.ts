@@ -1,9 +1,9 @@
 import { CRUD } from "@models/Core/CRUD.interface";
 import { GenreDTO } from "@models/genres/genres.interfaces";
 import mongoConnection from "@services/mongoDB";
-import { Logger } from "@utils/logger";
 import genreSchema from "./genreSchema";
-import genreJSON from "../../../../test/JSON/genres.json"
+// import { Logger } from "@utils/logger";
+// import genreJSON from "../../../../test/JSON/genres.json"
 export class GenreMongoPersistance implements CRUD<GenreDTO>{
     private Genre;
 
