@@ -4,7 +4,7 @@ import { Router } from 'express'
 const router = Router()
 
 router.get('/:id?', genresControllers.get)
-router.post('/', genresControllers.add)
+router.post('/addUser', genresControllers.add)
 router.put('/:id', genresControllers.update)
 router.delete('/:id', genresControllers.delete)
 

@@ -31,15 +31,4 @@ export class TagsMongoPersistance implements CRUD<TagDTO> {
   async delete(id: string): Promise<null> {
     return await this.Tag.findByIdAndUpdate(id)
   }
-
-  // call inside constructor
-  // private bulk() {
-  //   this.Tag.count()
-  //     .then( (count: number) => {
-  //         if(!count) {
-  //           this.Tag.insertMany(tagsJSON)
-  //         }
-  //     })
-  //     .catch(error => Logger.error(error.message))
-  // }
 }
