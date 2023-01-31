@@ -11,6 +11,7 @@ myServer.listen(config.port, () => {
   
   // Create indexs in ElasticSearch
   const ElasticIndexs = new ElasticIndexsClass()
+
   ElasticIndexs.initIndex(gamesConfig)
   .catch(error => Logger.error(error))
   ElasticIndexs.initIndex(usersConfig)

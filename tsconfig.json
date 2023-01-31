@@ -14,7 +14,8 @@
       "@controllers/*": ["controllers/*"],
       "@resources/*": ["resources/*"],
       "@apis/*": ["apis/*"],
-      "@models/*": ["models/*"]
+      "@models/*": ["models/*"],
+      "@core/*": ["core/*"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,

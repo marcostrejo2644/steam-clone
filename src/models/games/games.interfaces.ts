@@ -10,26 +10,6 @@ export interface GameElasticI extends GameBase{
   features: Array<string>
 }
 
-export interface GameDTO {
-  _id?: string
-  about: string
-  releaseDate?: string
-  principalPicture: string
-  images: Array<string>
-  shortDescription: string
-  owner: string
-  requeriments: {
-    os: string
-    processor: string
-    graphics: string
-  }
-  sells?: number
-  reviews?: {
-    positives: number
-    negatives: number
-  }
-}
-
 export interface GameI extends GameElasticI {
   about: string
   releaseDate?: string

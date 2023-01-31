@@ -1,9 +1,4 @@
 export interface GenreI{
-  id: string
-  name: string
-}
-
-export interface GenreDTO {
-  _id?: string
+  id?: string
   name: string
 }
