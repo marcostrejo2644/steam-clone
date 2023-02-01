@@ -1,16 +1,17 @@
-export interface GameBase {
+interface GameBaseI {
   _id?: string
   name: string
   price: number
 }
 
-export interface GameElasticI extends GameBase{
+// Contains Game relationships with other Docuents
+interface GameRelationshipsI {
   genre: string
   tags: Array<string>
   features: Array<string>
 }
 
-export interface GameI extends GameElasticI {
+export interface GameI extends GameBaseI, GameRelationshipsI{
   about: string
   releaseDate?: string
   principalPicture: string
@@ -28,3 +29,5 @@ export interface GameI extends GameElasticI {
     negatives: number
   }
 }
+
+export interface GameElasticI extends GameBaseI, GameRelationshipsI {}

@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import { Schema } from 'mongoose'
 import { GenreI } from '@models/genres/genres.interfaces'
 
 const genreSchema = new Schema<GenreI>({
@@ -14,6 +14,3 @@ const genreSchema = new Schema<GenreI>({
 })
 
 export default genreSchema;
-// const Genre = model('Genres', genreSchema)
-
-// export default Genre

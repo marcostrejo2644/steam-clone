@@ -3,7 +3,7 @@ import { TagI } from "@models/tags/tags.interfaces";
 import mongoConnection from "@services/mongoDB";
 import tagSchema from "./tagsSchema";
 
-export class TagMongoPersistence implements CRUD<TagI> {
+export class TagMongoPersistence implements CRUD<TagI, string> {
   private Tag;
 
   constructor() {
@@ -12,20 +12,36 @@ export class TagMongoPersistence implements CRUD<TagI> {
   }
 
   async get(id?: string | undefined): Promise<TagI | TagI[] | null> {
-    if(id) return await this.Tag.findById(id)
-    return await this.Tag.find()
+    try {
+      if(id) return await this.Tag.findById(id)
+      return await this.Tag.find()
+    } catch (error: any) {
+      throw new Error(`Model Error -> ${error.message}`)
+    }
   }
 
-  async add(object: TagI): Promise<TagI | null> {
-    const newTag = new this.Tag(object)
-    return await newTag.save()
+  async add(entity: TagI): Promise<TagI | null> {
+    try {
+      const newTag = new this.Tag(entity)
+      return await newTag.save()
+    } catch (error: any) {
+      throw new Error(`Model Error -> ${error.message}`)
+    }
   }
 
-  async update(id: string, object: TagI): Promise<TagI | null> {
-    return await this.Tag.findByIdAndUpdate(id , object)
+  async update(id: string, entity: TagI): Promise<TagI | null> {
+    try {
+      return await this.Tag.findByIdAndUpdate(id , entity)
+    } catch (error: any) {
+      throw new Error(`Model Error -> ${error.message}`)
+    }
   }
   
-  async delete(id: string): Promise<null> {
-    return await this.Tag.findByIdAndUpdate(id)
+  async delete(id: string): Promise<TagI | null> {
+    try {
+      return await this.Tag.findByIdAndUpdate(id)
+    } catch (error: any) {
+      throw new Error(`Model Error -> ${error.message}`)
+    }
   }
 }

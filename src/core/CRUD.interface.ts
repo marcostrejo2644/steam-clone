@@ -1,6 +1,10 @@
-export interface CRUD <T> {
-    get(id? : string) : Promise<null | T[] | T>
-    add(object: T) : Promise<null | T>
-    update(id: string, object: T) : Promise<T | null>
-    delete(id: string) : Promise<null>
+export interface CRUD < T, Identifier > extends IsReadeable < T, Identifier >, IsWriteable < T, Identifier > { }
+
+interface IsReadeable < T, Identifier >{
+    get(id? : Identifier) : Promise< T[] | T | null>
+}
+interface IsWriteable < T, Identifier >{
+    add(entity: T) : Promise< T | null>
+    update(id: Identifier, entity: T) : Promise<T | null>
+    delete(id: Identifier) : Promise<T | null>
 }
