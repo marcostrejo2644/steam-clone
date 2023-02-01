@@ -1,14 +1,21 @@
 import { NextFunction, Request, Response } from "express";
-import genreApi from "@apis/genreAPI";
+import { GenreAPI } from "@apis/genreAPI";
+import AbstractPersistenceFactory from "@core/Persistence/persistenceFactory.interface";
+import { MongoFactory } from "@core/Persistence/mongoFactory";
 
-class GenreController {
+export class GenreController {
+  private factory: AbstractPersistenceFactory
+  private genreAPI: GenreAPI
 
-  constructor() {}
+  constructor() {
+    this.factory = new MongoFactory()
+    this.genreAPI = new GenreAPI(this.factory)
+  }
 
-  async get(req: Request, res: Response, next: NextFunction) {
+  get = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params
-      const genres = await genreApi.get(id)
+      const genres = await this.genreAPI.get(id)
         
       res.json({ data: genres });
     } catch (error) {
@@ -16,10 +23,10 @@ class GenreController {
     }
   }
 
-  async add(req: Request, res: Response, next: NextFunction) {
+  add = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { name } = req.body
-      const newGenre = await genreApi.add({ name })
+      const newGenre = await this.genreAPI.add({ name })
 
       return res.json({ data: newGenre })
     } catch (error) {
@@ -27,12 +34,12 @@ class GenreController {
     }
   }
 
-  async update(req: Request, res: Response, next: NextFunction) {
+  update = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { name } = req.body
       const { id } = req.params
       
-      const updatedGenre = await genreApi.update(id, { name })
+      const updatedGenre = await this.genreAPI.update(id, { name })
 
       return res.json({ data: updatedGenre })
     } catch (error) {
@@ -40,17 +47,14 @@ class GenreController {
     }
   }
 
-  async delete(req: Request, res: Response, next: NextFunction) {
+  delete = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params
-      const deletedGenre = await genreApi.delete(id)
+      const deletedGenre = await this.genreAPI.delete(id)
 
       return res.json({ data: deletedGenre })
     } catch (error) {
       next(error)
     }
   }
-  
 }
-
-export default new GenreController()

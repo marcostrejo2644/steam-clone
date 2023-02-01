@@ -34,14 +34,14 @@ export const error404Route = async (request: Request, response: Response) => {
 
 export const checkRequest = async(request: Request, response: Response, next: NextFunction) => {
   const ALLOWED = [
-      "OPTIONS",
-      "HEAD",
-      "CONNECT",
-      "GET",
-      "POST",
-      "PUT",
-      "DELETE",
-      "PATCH"
+    "OPTIONS",
+    "HEAD",
+    "CONNECT",
+    "GET",
+    "POST",
+    "PUT",
+    "DELETE",
+    "PATCH"
   ];
 
   if( !ALLOWED.includes( request.method) ) {

@@ -1,11 +1,12 @@
 import { Router } from 'express'
-import gameController from '@controllers/games.controllers'
+import { GameController } from '@controllers/games.controllers'
 
+const gameCtrlIns = new GameController()
 const router = Router()
 
-router.get('/', gameController.get) 
-router.post('/', gameController.add)
-router.put('/:id', gameController.update)
-router.delete('/:id', gameController.delete)
+router.get('/:id?', gameCtrlIns.get) 
+router.post('/', gameCtrlIns.add)
+router.put('/:id', gameCtrlIns.update)
+router.delete('/:id', gameCtrlIns.delete)
 
 export default router
