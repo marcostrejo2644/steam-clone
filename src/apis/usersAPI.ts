@@ -1,12 +1,12 @@
-import { typePersistance } from '@models/Core/persistan.type'
-import UsersFactory from '@models/users/users.factory'
+import { MongoFactory } from '@core/Persistence/mongoFactory';
+import AbstractPersistenceFactory from '@core/Persistence/persistenceFactory.interface'
 import { UserCreateRequest, UserI } from '@models/users/users.interfaces'
 
-class UsersAPI {
+export class UserAPI {
   private users
 
-  constructor() {
-    this.users = UsersFactory.getData(typePersistance.MONGO)
+  constructor(factory: AbstractPersistenceFactory) {
+    this.users = factory.createUser()
   }
 
   async get(id?: string | undefined) {
@@ -25,5 +25,3 @@ class UsersAPI {
     return await this.users.delete(id)
   }
 }
-
-export default new UsersAPI()

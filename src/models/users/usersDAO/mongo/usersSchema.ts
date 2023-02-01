@@ -34,6 +34,8 @@ const UserSchema = new Schema<UserI>({
     default: []
   },
   createdDate: Date
+},{
+  collection: 'Users'
 })
 
 export default UserSchema

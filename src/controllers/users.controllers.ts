@@ -1,22 +1,30 @@
 import dayjs from 'dayjs'
 import { NextFunction, Request, Response } from 'express'
-import usersAPI from '@apis/usersAPI'
+import { UserAPI } from '@apis/usersAPI'
 import { UserCreateRequest } from '@models/users/users.interfaces'
+import AbstractPersistenceFactory from '@core/Persistence/persistenceFactory.interface'
+import { MongoFactory } from '@core/Persistence/mongoFactory'
 
-class UsersControllers {
-  constructor() {}
+export class UserController {
+  private factory: AbstractPersistenceFactory
+  private userAPI: UserAPI
 
-  async get(req: Request, res: Response, next: NextFunction) {
+  constructor() {
+    this.factory = new MongoFactory()
+    this.userAPI = new UserAPI(this.factory)
+  }
+
+  get = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id = undefined } = req.params
-      const users = await usersAPI.get(id)
+      const users = await this.userAPI.get(id)
       res.status(200).json({ data: users })
     } catch (error) {
       next(error)
     }
   }
 
-  async add(req: Request, res: Response, next: NextFunction) {
+  add = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { email, username, thirdParty, updateDate } = req.body
       const user: UserCreateRequest = {
@@ -26,17 +34,14 @@ class UsersControllers {
         createdDate: dayjs(),
         updateDate: dayjs(updateDate)
       }
-      await usersAPI.add(user)
+      await this.userAPI.add(user)
       res.status(200).json({ message: 'User created succesfully', user })
     } catch (error) {
       next(error)
     }
   }
 
-  async update(){}
+  update = async () => { }
 
-  async delete(){}
-
+  delete = async () => { }
 }
-
-export default new UsersControllers()

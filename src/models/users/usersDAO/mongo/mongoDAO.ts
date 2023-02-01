@@ -1,9 +1,9 @@
-import mongoConnection from "@services/mongoDB";
-import { CRUD } from '@models/Core/CRUD.interface'
+import mongoConnection from "@services/mongoDB"
 import UserSchema from '@models/users/usersDAO/mongo/usersSchema'
 import { UserCreateRequest, UserI } from '@models/users/users.interfaces'
+import { CRUD } from "@core/CRUD.interface"
 
-export default class UsersMongoPersistance implements CRUD<UserCreateRequest> {
+export class UserMongoPersistence implements CRUD<UserCreateRequest, string> {
   private User
 
   constructor() {
@@ -25,7 +25,7 @@ export default class UsersMongoPersistance implements CRUD<UserCreateRequest> {
     return await this.User.findByIdAndUpdate(id, object)
   }
   
-  async delete(id: string): Promise<null> {
+  async delete(id: string): Promise<UserI | null> {
     return await this.User.findByIdAndUpdate(id)
   }
 }
