@@ -1,4 +1,3 @@
-import { MongoFactory } from '@core/Persistence/mongoFactory';
 import AbstractPersistenceFactory from '@core/Persistence/persistenceFactory.interface'
 import { UserCreateRequest, UserI } from '@models/users/users.interfaces'
 

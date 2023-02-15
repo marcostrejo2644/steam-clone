@@ -23,8 +23,7 @@
     "forceConsistentCasingInFileNames": true,
     "useUnknownInCatchVariables": true,
     "noImplicitAny": true,
-    "noImplicitAny": true,
   },
-  "include": ["./src/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["./src/**/*.ts", "./src/__tests__/**/*.ts"],
+  "exclude": ["node_modules", ".vscode", "build", "dist"]
 }
